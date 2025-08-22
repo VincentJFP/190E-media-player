@@ -217,97 +217,56 @@ body {
   position: relative;
 }
 
-/* CSS-based Icons */
-.prev-icon::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 0 8px 12px;
-  border-color: transparent transparent transparent #262a30;
-  margin-right: 2px;
+/* SVG-based Icons */
+.prev-icon {
+  background-image: url('svgs/Skip Back.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.prev-icon::after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 0 8px 12px;
-  border-color: transparent transparent transparent #262a30;
-  margin-left: 2px;
+.play-icon {
+  background-image: url('svgs/Play.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.play-icon::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 0 8px 12px;
-  border-color: transparent transparent transparent #262a30;
+.pause-icon {
+  background-image: url('svgs/Pause.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.pause-icon::before {
-  content: '';
-  width: 3px;
-  height: 16px;
-  background: #262a30;
-  margin-right: 3px;
+.stop-icon {
+  background-image: url('svgs/Stop.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.pause-icon::after {
-  content: '';
-  width: 3px;
-  height: 16px;
-  background: #262a30;
-  margin-left: 3px;
+.next-icon {
+  background-image: url('svgs/Skip Forward.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.stop-icon::before {
-  content: '';
-  width: 12px;
-  height: 12px;
-  background: #262a30;
+.vol-down-icon {
+  font-size: 16px;
+  font-weight: 700;
+  color: #262a30;
+  text-shadow: 0 1px 1px rgba(255,255,255,.65);
+  font-family: Arial, sans-serif;
 }
 
-.next-icon::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 12px 8px 0;
-  border-color: transparent #262a30 transparent transparent;
-  margin-right: 2px;
-}
-
-.next-icon::after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 12px 8px 0;
-  border-color: transparent #262a30 transparent transparent;
-  margin-left: 2px;
-}
-
-.vol-down-icon::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 0 8px 8px;
-  border-color: transparent transparent transparent #262a30;
-  transform: rotate(90deg);
-}
-
-.vol-up-icon::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 8px 8px 0;
-  border-color: transparent #262a30 transparent transparent;
-  transform: rotate(90deg);
+.vol-up-icon {
+  font-size: 16px;
+  font-weight: 700;
+  color: #262a30;
+  text-shadow: 0 1px 1px rgba(255,255,255,.65);
+  font-family: Arial, sans-serif;
 }
 
 .mute-icon {
