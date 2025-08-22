@@ -24,6 +24,7 @@ html, body {
 body {
   margin: auto;
   max-width:90%;
+  padding-top: 10px;
   color: var(--text);
   background: radial-gradient(1200px 500px at 20% -10%, rgba(255,255,255,0.08), transparent 60%),
               linear-gradient(135deg, var(--gm-01), var(--gm-00));
@@ -355,7 +356,7 @@ body {
 }
 
 /* Neutral search button */
-#search-btn{ padding:12px 18px; background: linear-gradient(145deg,#d7d9de,#aeb4be); color:#1b1f26; border:none; border-radius:8px; box-shadow:0 6px 12px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.6) }
+#search-btn{ padding:12px 18px;font-size: 12px; font-weight: 600; letter-spacing: .14em; background: linear-gradient(145deg,#d7d9de,#aeb4be); color:#1b1f26; border:none; border-radius:8px; box-shadow:0 6px 12px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.6) }
 #search-btn:hover{transform: translateY(-1px); box-shadow: 0 8px 14px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.7)}
 #search-btn:active{transform: translateY(1px)}
 
@@ -393,9 +394,11 @@ body {
   .transport-controls{flex-wrap:wrap; gap:10px}
   .transport-focus .skeu-button{width:52px; height:52px}
   .skeu-button{width:46px; height:46px}
-  .viz-eq{height:22px}
+  .viz-eq{height:40px}
   .time-display{font-size:16px}
   .youtube-playlist-item{min-width:220px; max-width:220px}
+  .track-info-section {flex-direction: column; align-items: flex-start;}
+  .playback-status{flex-direction: row-reverse; align-items: center;}
 }
 
 @media (max-width: 520px){
