@@ -91,10 +91,8 @@ function playButtonClick() { playMechanicalClick(1); }
 function playDialTick() { playMechanicalClick(0.6); }
 
 // YouTube API configuration
-// Note: This is a placeholder key that may have reached quota limits
-// You'll need to replace this with your own YouTube Data API v3 key
-// Get one at: https://console.cloud.google.com/apis/credentials
-const YOUTUBE_API_KEY = 'AIzaSyBLry-rRzBQyv3RI5YyTaubVQ8FHglJjBY';
+// Note: API calls are now proxied through a backend service to keep the key secure
+// The backend service handles the actual YouTube API calls
 
 // YouTube search functionality
 // Simple keyword search (no paging)
@@ -105,8 +103,8 @@ async function searchYouTube(query) {
   try {
     console.log('Searching YouTube for:', query);
     
-    // Search for videos
-    const searchResponse = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&q=${encodeURIComponent(query + ' music')}&key=${YOUTUBE_API_KEY}&maxResults=25`);
+    // Search for videos through our backend proxy
+    const searchResponse = await fetch(`/api/youtube/search?q=${encodeURIComponent(query + ' music')}&maxResults=25`);
     if (!searchResponse.ok) {
       throw new Error(`YT_${searchResponse.status}`);
     }
@@ -117,9 +115,9 @@ async function searchYouTube(query) {
       throw new Error('No results found');
     }
     
-    // Get video details for all results
+    // Get video details for all results through our backend proxy
     const videoIds = searchData.items.map(item => item.id.videoId);
-    const detailsResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIds.join(',')}&key=${YOUTUBE_API_KEY}`);
+    const detailsResponse = await fetch(`/api/youtube/videos?ids=${videoIds.join(',')}`);
     const detailsData = await detailsResponse.json();
     
     // Process results and check embeddability (no custom rating)
@@ -156,7 +154,7 @@ async function searchYouTube(query) {
 // Check if video is embeddable
 async function checkVideoEmbeddable(videoId) {
   try {
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=status,contentDetails&id=${videoId}&key=${YOUTUBE_API_KEY}`);
+    const response = await fetch(`/api/youtube/video-status?id=${videoId}`);
     const data = await response.json();
     
     if (data.items && data.items.length > 0) {

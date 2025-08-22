@@ -5,13 +5,21 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dev": "npx http-server src -p 8080 -c-1 --cors"
+    "dev": "npx http-server src -p 8080 -c-1 --cors",
+    "server": "node server.js",
+    "dev-server": "nodemon server.js"
   },
   "keywords": ["electron", "music", "player", "youtube"],
   "author": "Your Name",
   "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "nodemon": "^3.0.1"
   }
 }
 
