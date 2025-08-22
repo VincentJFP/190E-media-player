@@ -84,3 +84,4 @@ Desktop.ini
 # Logs
 logs
 *.log
+.vercel

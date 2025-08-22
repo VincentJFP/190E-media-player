@@ -103,8 +103,8 @@ async function searchYouTube(query) {
   try {
     console.log('Searching YouTube for:', query);
     
-    // Search for videos through our backend proxy
-    const searchResponse = await fetch(`/api/youtube/search?q=${encodeURIComponent(query + ' music')}&maxResults=25`);
+    // Search for videos through our Vercel backend proxy
+    const searchResponse = await fetch(`https://190e-media-player-backend-8w8p5lkii-vincents-projects-5c936fd1.vercel.app/api/youtube/search?q=${encodeURIComponent(query + ' music')}&maxResults=25`);
     if (!searchResponse.ok) {
       throw new Error(`YT_${searchResponse.status}`);
     }
@@ -115,9 +115,9 @@ async function searchYouTube(query) {
       throw new Error('No results found');
     }
     
-    // Get video details for all results through our backend proxy
+    // Get video details for all results through our Vercel backend proxy
     const videoIds = searchData.items.map(item => item.id.videoId);
-    const detailsResponse = await fetch(`/api/youtube/videos?ids=${videoIds.join(',')}`);
+    const detailsResponse = await fetch(`https://190e-media-player-backend-8w8p5lkii-vincents-projects-5c936fd1.vercel.app/api/youtube/videos?ids=${videoIds.join(',')}`);
     const detailsData = await detailsResponse.json();
     
     // Process results and check embeddability (no custom rating)
@@ -154,7 +154,7 @@ async function searchYouTube(query) {
 // Check if video is embeddable
 async function checkVideoEmbeddable(videoId) {
   try {
-    const response = await fetch(`/api/youtube/video-status?id=${videoId}`);
+    const response = await fetch(`https://190e-media-player-backend-8w8p5lkii-vincents-projects-5c936fd1.vercel.app/api/youtube/video-status?id=${videoId}`);
     const data = await response.json();
     
     if (data.items && data.items.length > 0) {
