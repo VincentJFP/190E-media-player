@@ -209,15 +209,113 @@ body {
 }
 .stop-button .button-icon{color:#ffffff; text-shadow: 0 1px 1px rgba(0,0,0,.4)}
 .button-icon{
-  font-size:18px;
-  color:#262a30;
-  font-weight:700; 
-  text-shadow:0 1px 1px rgba(255,255,255,.65);
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", "EmojiOne Mozilla", "Twemoji Mozilla", "Segoe UI Symbol", Arial, sans-serif;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
+  position: relative;
+}
+
+/* CSS-based Icons */
+.prev-icon::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #262a30;
+  margin-right: 2px;
+}
+
+.prev-icon::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #262a30;
+  margin-left: 2px;
+}
+
+.play-icon::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #262a30;
+}
+
+.pause-icon::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: #262a30;
+  margin-right: 3px;
+}
+
+.pause-icon::after {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: #262a30;
+  margin-left: 3px;
+}
+
+.stop-icon::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #262a30;
+}
+
+.next-icon::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 12px 8px 0;
+  border-color: transparent #262a30 transparent transparent;
+  margin-right: 2px;
+}
+
+.next-icon::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 12px 8px 0;
+  border-color: transparent #262a30 transparent transparent;
+  margin-left: 2px;
+}
+
+.vol-down-icon::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent #262a30;
+  transform: rotate(90deg);
+}
+
+.vol-up-icon::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 8px 8px 0;
+  border-color: transparent #262a30 transparent transparent;
+  transform: rotate(90deg);
+}
+
+.mute-icon {
+  font-size: 12px;
+  font-weight: 700;
+  color: #262a30;
+  text-shadow: 0 1px 1px rgba(255,255,255,.65);
+  font-family: Arial, sans-serif;
 }
 
 /* Seek */
