@@ -34,7 +34,7 @@ body {
 
 /* Faceplate */
 .player-container {
-  max-width: 980px;
+  max-width: 900px;
   margin: 18px auto;
   padding: 26px 28px 22px;
   border-radius: 14px;
@@ -395,7 +395,7 @@ body {
   .transport-controls{flex-wrap:wrap; gap:10px}
   .transport-focus .skeu-button{width:52px; height:52px}
   .skeu-button{width:46px; height:46px}
-  .viz-eq{height:50px; gap: 1px; width: 100%;}
+  .viz-eq{height:50px; gap: 2px; width: 100%;}
   .viz-eq .bar{flex: 1; min-width: 1px;}
   .time-display{font-size:16px}
   .youtube-playlist-item{min-width:220px; max-width:220px}
