@@ -327,11 +327,17 @@ async function playYouTubeVideo(videoId, index = 0) {
 
 function onYTStateChange(e){
   if (e.data === YT.PlayerState.PLAYING){
-    isPlaying = true; ytStatus.textContent = 'Playing';
+    isPlaying = true; 
+    ytStatus.textContent = 'Playing';
+    ytStatus.classList.remove('paused');
   } else if (e.data === YT.PlayerState.PAUSED){
-    isPlaying = false; ytStatus.textContent = 'Paused';
+    isPlaying = false; 
+    ytStatus.textContent = 'Paused';
+    ytStatus.classList.add('paused');
   } else if (e.data === YT.PlayerState.ENDED){
-    isPlaying = false; ytStatus.textContent = 'Ended';
+    isPlaying = false; 
+    ytStatus.textContent = 'Ended';
+    ytStatus.classList.remove('paused');
     playNext();
   }
 }
@@ -402,6 +408,7 @@ ytPlayBtn.addEventListener('click', () => {
     ytPlayBtn.classList.add('active');
     ytPauseBtn.classList.remove('active');
     isPlaying = true;
+    ytStatus.classList.remove('paused');
   }
 });
 
@@ -412,6 +419,7 @@ ytPauseBtn.addEventListener('click', () => {
     ytPlayBtn.classList.remove('active');
     ytPauseBtn.classList.add('active');
     isPlaying = false;
+    ytStatus.classList.add('paused');
   }
 });
 
@@ -429,6 +437,7 @@ ytStopBtn.addEventListener('click', () => {
     ytTrackTitle.textContent = 'YouTube Music';
     ytTrackArtist.textContent = 'Ready to search';
     ytStatus.textContent = 'Stopped';
+    ytStatus.classList.remove('paused');
   }
 });
 
