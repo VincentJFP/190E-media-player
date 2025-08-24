@@ -3,7 +3,7 @@ const config = {
   // Use local backend for development, Vercel backend for production
   apiBaseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? 'http://localhost:3000' 
-    : 'https://190e-media-player-backend-8w8p5lkii-vincents-projects-5c936fd1.vercel.app',
+    : 'https://190e-media-player.vercel.app',
   
   // API endpoints
   endpoints: {

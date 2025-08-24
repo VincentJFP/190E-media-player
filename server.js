@@ -12,7 +12,7 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:8080',
     'https://vincentjfp.github.io',
-    'https://190E-media-player-backend-8w8p5lkii-vincents-projects-5c936fd1.vercel.app'
+    'https://190e-media-player.vercel.app'
   ],
   credentials: true
 }));
