@@ -327,11 +327,17 @@ async function playYouTubeVideo(videoId, index = 0) {
 
 function onYTStateChange(e){
   if (e.data === YT.PlayerState.PLAYING){
-    isPlaying = true; ytStatus.textContent = 'Playing';
+    isPlaying = true; 
+    ytStatus.textContent = 'Playing';
+    ytStatus.classList.remove('paused');
   } else if (e.data === YT.PlayerState.PAUSED){
-    isPlaying = false; ytStatus.textContent = 'Paused';
+    isPlaying = false; 
+    ytStatus.textContent = 'Paused';
+    ytStatus.classList.add('paused');
   } else if (e.data === YT.PlayerState.ENDED){
-    isPlaying = false; ytStatus.textContent = 'Ended';
+    isPlaying = false; 
+    ytStatus.textContent = 'Ended';
+    ytStatus.classList.remove('paused');
     playNext();
   }
 }
@@ -402,6 +408,7 @@ ytPlayBtn.addEventListener('click', () => {
     ytPlayBtn.classList.add('active');
     ytPauseBtn.classList.remove('active');
     isPlaying = true;
+    ytStatus.classList.remove('paused');
   }
 });
 
@@ -412,6 +419,7 @@ ytPauseBtn.addEventListener('click', () => {
     ytPlayBtn.classList.remove('active');
     ytPauseBtn.classList.add('active');
     isPlaying = false;
+    ytStatus.classList.add('paused');
   }
 });
 
@@ -429,12 +437,13 @@ ytStopBtn.addEventListener('click', () => {
     ytTrackTitle.textContent = 'YouTube Music';
     ytTrackArtist.textContent = 'Ready to search';
     ytStatus.textContent = 'Stopped';
+    ytStatus.classList.remove('paused');
   }
 });
 
-ytNextBtn.addEventListener('click', playNext);
-ytPrevBtn.addEventListener('click', playPrevious);
-;[ytNextBtn, ytPrevBtn].forEach(btn => btn && btn.addEventListener('click', playButtonClick));
+addButtonEvents(ytNextBtn, playNext);
+addButtonEvents(ytPrevBtn, playPrevious);
+;[ytNextBtn, ytPrevBtn].forEach(btn => btn && addButtonEvents(btn, playButtonClick));
 
 // Add ripple feedback to all skeu-buttons
 document.querySelectorAll('.skeu-button').forEach(btn => {
@@ -513,11 +522,22 @@ function setVolume(v){
   currentVolume = Math.max(0, Math.min(100, Math.round(v)));
   if (currentVideoId) controlYouTubeVideo('setVolume', currentVolume);
 }
-if (volDownBtn) volDownBtn.addEventListener('click', ()=>{ playButtonClick(); setVolume(currentVolume - 10); });
-if (volUpBtn) volUpBtn.addEventListener('click',   ()=>{ playButtonClick(); setVolume(currentVolume + 10); });
+
+// Helper function to add both click and touch events
+function addButtonEvents(element, handler) {
+  if (!element) return;
+  element.addEventListener('click', handler);
+  element.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handler(e);
+  });
+}
+
+if (volDownBtn) addButtonEvents(volDownBtn, ()=>{ playButtonClick(); setVolume(currentVolume - 10); });
+if (volUpBtn) addButtonEvents(volUpBtn, ()=>{ playButtonClick(); setVolume(currentVolume + 10); });
 if (muteBtn){
   let muted=false; let prev=currentVolume;
-  muteBtn.addEventListener('click', ()=>{
+  addButtonEvents(muteBtn, ()=>{
     playButtonClick();
     muted = !muted;
     muteBtn.classList.toggle('active', muted);

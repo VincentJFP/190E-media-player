@@ -22,7 +22,9 @@ html, body {
 }
 
 body {
-  margin: 0;
+  margin: auto;
+  max-width:90%;
+  padding-top: 10px;
   color: var(--text);
   background: radial-gradient(1200px 500px at 20% -10%, rgba(255,255,255,0.08), transparent 60%),
               linear-gradient(135deg, var(--gm-01), var(--gm-00));
@@ -32,7 +34,7 @@ body {
 
 /* Faceplate */
 .player-container {
-  max-width: 980px;
+  max-width: 900px;
   margin: 18px auto;
   padding: 26px 28px 22px;
   border-radius: 14px;
@@ -51,7 +53,7 @@ body {
   display: block;
   height: 2px;
   margin-bottom: 12px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, .35), transparent);
 }
 
 /* Branding (stamped) */
@@ -72,7 +74,7 @@ body {
 
 /* Main display window (cassette door vibe) */
 #youtube-video-container iframe{width:100%; height:100%; border:0}
-.video-section{position:relative; z-index:2}
+.video-section{position:relative; z-index:2; overflow: hidden; border-radius: 10px;}
 #youtube-video-container{transform: translateY(-10px); width: calc(100% + 20px); margin-left: -10px}
 #youtube-video-container {
   width: 100%;
@@ -208,7 +210,74 @@ body {
   box-shadow: 0 0 0 1px rgba(255,255,255,.3), inset 0 1px 2px rgba(255,255,255,.75), 0 0 12px rgba(244,67,54,.35);
 }
 .stop-button .button-icon{color:#ffffff; text-shadow: 0 1px 1px rgba(0,0,0,.4)}
-.button-icon{font-size:16px;color:#262a30;font-weight:700; text-shadow:0 1px 1px rgba(255,255,255,.65)}
+.button-icon{
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* SVG-based Icons */
+.prev-icon {
+  background-image: url('svgs/Skip Back.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.play-icon {
+  background-image: url('svgs/Play.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pause-icon {
+  background-image: url('svgs/Pause.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.stop-icon {
+  background-image: url('svgs/Stop.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.next-icon {
+  background-image: url('svgs/Skip Forward.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.vol-down-icon {
+  font-size: 16px;
+  font-weight: 700;
+  color: #262a30;
+  text-shadow: 0 1px 1px rgba(255,255,255,.65);
+  font-family: Arial, sans-serif;
+}
+
+.vol-up-icon {
+  font-size: 16px;
+  font-weight: 700;
+  color: #262a30;
+  text-shadow: 0 1px 1px rgba(255,255,255,.65);
+  font-family: Arial, sans-serif;
+}
+
+.mute-icon {
+  font-size: 12px;
+  font-weight: 700;
+  color: #262a30;
+  text-shadow: 0 1px 1px rgba(255,255,255,.65);
+  font-family: Arial, sans-serif;
+}
 
 /* Seek */
 .seek-container{display:flex; align-items:center; gap:10px; flex:1}
@@ -287,7 +356,7 @@ body {
 }
 
 /* Neutral search button */
-#search-btn{ padding:12px 18px; background: linear-gradient(145deg,#d7d9de,#aeb4be); color:#1b1f26; border:none; border-radius:8px; box-shadow:0 6px 12px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.6) }
+#search-btn{ padding:12px 18px;font-size: 12px; font-weight: 600; letter-spacing: .14em; background: linear-gradient(145deg,#d7d9de,#aeb4be); color:#1b1f26; border:none; border-radius:8px; box-shadow:0 6px 12px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.6) }
 #search-btn:hover{transform: translateY(-1px); box-shadow: 0 8px 14px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.7)}
 #search-btn:active{transform: translateY(1px)}
 
@@ -307,27 +376,31 @@ body {
   background:linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.85)); border-radius:6px; border:1px solid rgba(255,255,255,.06)}
 
 /* VFD-style track info panel */
-.track-info-section{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-top:8px; padding:10px 12px; border-radius:10px; 
+.track-info-section{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:8px; padding:10px 12px; border-radius:10px; 
   background: linear-gradient(180deg,#0a0c0e,#0c1115); border:1px solid rgba(0,255,140,0.12); box-shadow: inset 0 0 14px rgba(0,255,120,0.08)}
-.viz-eq{display:flex; align-items:flex-end; gap:2px; height:28px; margin-right:8px}
-.viz-eq .bar{width:4px; height:10px; border-radius:2px; background: linear-gradient(180deg,#9bffc8,#2adf87); box-shadow:0 0 10px rgba(0,255,140,.55)}
+.viz-eq{display:flex; align-items:flex-end; gap:2px; height:55px; margin-right:8px; width: 30%}
+.viz-eq .bar{flex: 1; min-width: 2px; height:10px; border-radius:2px; background: linear-gradient(180deg,#9bffc8,#2adf87); box-shadow:0 0 10px rgba(0,255,140,.55)}
 .track-details{min-width:0}
 .track-title{font-size:16px; font-weight:700; color:#d9ffe8; text-shadow:0 0 6px rgba(0,255,160,0.25)}
 .track-artist{font-size:12px; color:#98e6bf; opacity:.9}
-.playback-status{display:flex; flex-direction:column; align-items:flex-end; gap:4px}
+.playback-status{display:flex; flex-direction:row-reverse; align-items:flex-end; gap:4px}
 .time-display{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; font-size:18px; letter-spacing:.08em; color:#7dffaf; text-shadow:0 0 8px rgba(0,255,140,.6)}
-#yt-status{font-size:12px; color:#7dffaf; letter-spacing:.12em; background:rgba(0,255,120,.08); padding:2px 6px; border-radius:6px; border:1px solid rgba(0,255,120,.18)}
+#yt-status{font-size:12px; color:#7dffaf; letter-spacing:.12em; background:rgba(0,255,120,.08); padding:2px 6px; border-radius:6px; border:1px solid rgba(0,255,120,.18); transition: all 0.3s ease}
+#yt-status.paused{color:#ff7a00; background:rgba(255,122,0,.08); border:1px solid rgba(255,122,0,.18)}
 
 /* Small screen tweaks */
 @media (max-width: 768px){
   .player-container{padding:16px}
-  #youtube-video-container{transform: translateY(-6px); width: calc(100% + 12px); margin-left:-6px}
+  #youtube-video-container{transform: translateY(0px); width: calc(100% + 12px); margin-left:-6px}
   .transport-controls{flex-wrap:wrap; gap:10px}
   .transport-focus .skeu-button{width:52px; height:52px}
   .skeu-button{width:46px; height:46px}
-  .viz-eq{height:22px}
+  .viz-eq{height:50px; gap: 3%; width: 100%;}
+  .viz-eq .bar{flex: 1; min-width: 1px;}
   .time-display{font-size:16px}
   .youtube-playlist-item{min-width:220px; max-width:220px}
+  .track-info-section {flex-direction: column; align-items: flex-start;}
+  .playback-status{flex-direction: row-reverse; align-items: center;}
 }
 
 @media (max-width: 520px){
